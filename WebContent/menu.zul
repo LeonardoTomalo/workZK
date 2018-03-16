@@ -1,0 +1,12 @@
+<grid id="grMenu" model="@load(vm.opciones)" hflex="1" vflex="1">
+	<columns>
+		<column width="70px" />
+		<column />
+	</columns>
+	<template name="model">
+		<row onClick="@command('cargaUrl', url=each.url)">
+			<image src="@load(each.imagen)" height="40px"/>
+			<label value="@load(each.titulo)"/>
+		</row>
+	</template>
+</grid>
