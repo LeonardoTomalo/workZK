@@ -1,6 +1,5 @@
 <div hflex="1" vflex="1" sclass="footer">
 	<vbox hflex="1" vflex="1" align="center">
-		Curso de Java Avanzado (Desarrollo de Aplicaciones Web con Java)
-		<a href="http://www.upse.edu.ec">http://www.upse.edu.ec</a>
+		Desarrollado por Leonardo Tomalo
 	</vbox>
 </div>
