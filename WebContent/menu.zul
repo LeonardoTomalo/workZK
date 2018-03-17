@@ -1,4 +1,4 @@
-<grid id="grMenu" model="@load(vm.opciones)" hflex="1" vflex="1">
+<grid id="grMenu" model="@load(vm.opcion)" hflex="1" vflex="1">
 	<columns>
 		<column width="70px" />
 		<column />
