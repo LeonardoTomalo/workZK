@@ -2,6 +2,9 @@ package com.demo.pojosModel;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.eclipse.persistence.annotations.AdditionalCriteria;
+
 import java.util.List;
 
 
@@ -10,7 +13,14 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Privilegio.findAll", query="SELECT p FROM Privilegio p")
+@NamedQueries({
+@NamedQuery(name="Privilegio.findAll", query="SELECT p FROM Privilegio p"),
+@NamedQuery(name="Privilegio.usuarioPrivilegio", query="SELECT r.id "
+		+ "FROM Privilegio r, Usuario u, UsuarioPrivilegio ru "
+		+ "WHERE ru.privilegio.id=r.id AND ru.usuario.id=u.id "
+		+ "AND u.id=:patron ")
+})
+@AdditionalCriteria(" this.estado='A'")
 public class Privilegio implements Serializable {
 	private static final long serialVersionUID = 1L;
 

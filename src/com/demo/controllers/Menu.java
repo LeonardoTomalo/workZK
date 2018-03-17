@@ -13,9 +13,10 @@ import com.demo.pojosModel.OpcionDAO;
 
 public class Menu {
 	
-	public List<Opcion> getOpciones(){
+	public List<Opcion> getOpcion(){
 		OpcionDAO opcionDao = new OpcionDAO();
-		return opcionDao.getOpciones();
+		
+		return opcionDao.getOpcionRol();
 	}
 	
 	@Command

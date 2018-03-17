@@ -10,7 +10,16 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Opcion.findAll", query="SELECT o FROM Opcion o")
+@NamedQueries({
+@NamedQuery(name="Opcion.findAll", query="SELECT o FROM Opcion o"),
+@NamedQuery(name="Opcion.buscarPorPatron", query="SELECT o FROM Opcion o "
+		+ "WHERE LOWER(o.titulo) LIKE :patron"),
+@NamedQuery(name="Opcion.opcionPrivilegio",query="SELECT o FROM Opcion o "
+		+ "WHERE o.estado='A' and o.id IN "
+		+ "(SELECT s.opcion.id FROM OpcionPrivilegio s "
+		+ "WHERE s.privilegio.id= :patron AND s.estado='A')")
+
+})
 public class Opcion implements Serializable {
 	private static final long serialVersionUID = 1L;
 

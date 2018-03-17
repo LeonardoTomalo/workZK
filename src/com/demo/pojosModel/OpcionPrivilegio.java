@@ -10,7 +10,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="opcion_privilegio")
-@NamedQuery(name="OpcionPrivilegio.findAll", query="SELECT o FROM OpcionPrivilegio o")
+
+@NamedQueries({
+@NamedQuery(name="OpcionPrivilegio.findAll", query="SELECT o FROM OpcionPrivilegio o"),
+@NamedQuery(name="OpcionRol.OpcionAcceso", query="SELECT o "
+		+ "FROM OpcionPrivilegio o,Opcion m,Privilegio r "
+		+ "WHERE o.opcion.id=m.id AND o.privilegio.id=r.id AND o.privilegio.id=:patron AND o.estado='A' "),
+@NamedQuery(name="OpcionPrivilegio.OpcionSinAcceso", query= "SELECT m "
+		+ "FROM Opcion m WHERE m.id NOT IN (SELECT a.opcion.id FROM OpcionPrivilegio a WHERE a.privilegio.id=:patron AND a.estado='A') "
+		+ "AND m.estado='A' "),
+@NamedQuery(name="OpcionPrivilegio.OpcionAccesoEliminado", query= " SELECT a.id FROM OpcionPrivilegio a WHERE a.privilegio.id=:patron1 AND a.opcion.id=:patron2 AND a.estado='E'")
+
+})
 public class OpcionPrivilegio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
