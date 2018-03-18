@@ -6,8 +6,23 @@
 		<div width="400px">
 			<label value="Ejercicio de Practica " style="font-size: 2.4em;"/>
 		</div>
-		<hbox hflex="1" vflex="1" pack="end" align="end">
-			Usuario Anónimo
-		</hbox>
+		<div  
+		style="background-color:#0B3B24; color:white; padding:5px 10px;">
+		 <hbox hflex="1" vflex="1" pack="end" align="left">
+			  	<label value="Usuario: " style="font-weight:bold" />
+				<label value="@load(vm.nombreUsuario)" />
+				<space bar="true" spacing="20px" />
+				<h:form id="f" name="f"
+					action="j_spring_security_logout" 
+					method="POST"
+					xmlns:h="native">
+					<html>
+						<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					</html>
+					<button label="Salir" type="submit"/>
+				</h:form>
+			</hbox>
+		
+	</div>
 	</hbox>
 </div>

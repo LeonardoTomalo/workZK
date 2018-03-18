@@ -1,0 +1,71 @@
+<zk>
+	<style src="/style/letra.css" />  
+	<borderlayout  >
+		
+		<center style="background:#EFF2FB;" > 
+			<hbox vflex="1" hflex="1" align="center" pack="center"
+				spacing="20px">
+
+				<h:form id="f" name="f" action="j_spring_security_check"
+					method="POST" xmlns:h="native">
+					<vlayout>
+									 	
+							<vbox apply="org.zkoss.bind.BindComposer" style="background:#FFFFFF;" width="320px"
+								  align="center" spacing="10px">
+							  
+							  	<!-- Formulario para autenticacion -->
+							  	<separator spacing="20px" />
+							  	<label sclass="titulo" value="INICIAR SESIÓN" />
+							  	<label sclass="descripcion" value="Por favor ingrese su usuario y contraseña" />
+								<vlayout >
+									<hlayout>
+									<image src="/img/Login/user.jpg" width="25px" height="25px" />
+									<textbox id="u"  width="225px" name="username" 
+									 
+									constraint="no empty: Ingrese el usuario"  height="25px"/>
+								</hlayout>
+ 								
+ 								<hlayout>
+ 									<image src="/img/Login/clave.jpg" height="25px" width="25px"></image>
+									
+									<textbox id="p" width="225px" name="password"  
+									 
+									type="password" constraint="no empty: Ingrese la clave" height="25px" />
+ 								</hlayout>
+								
+								<!-- Procesa el login -->
+																
+								<hlayout>
+									<button id="sesion"  label="Login" type="submit" height="35px"  width="255px" />
+								</hlayout>
+								
+								<hlayout>
+								<label sclass="descripcion" value="Recordarme:" />
+											<checkbox id="r"
+												name="_spring_security_remember_me" />
+								</hlayout>
+															
+								<html style="color:red"
+									if="${not empty param.login_error}">
+									<![CDATA[ Usuario o clave incorrecta !!
+									]]>
+							   </html>
+							   
+							   <html>
+									<input type="hidden"
+										name="${_csrf.parameterName}" value="${_csrf.token}" />
+								</html>														
+								</vlayout>
+								
+
+							</vbox> 
+						 
+					</vlayout>
+				</h:form>
+			</hbox> 
+		</center>
+
+
+	</borderlayout>
+	 
+</zk>

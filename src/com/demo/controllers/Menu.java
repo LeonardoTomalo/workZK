@@ -10,12 +10,12 @@ import org.zkoss.zk.ui.Sessions;
 
 import com.demo.pojosModel.Opcion;
 import com.demo.pojosModel.OpcionDAO;
+import com.demo.security.SecurityUtil;
 
 public class Menu {
 	
 	public List<Opcion> getOpcion(){
-		OpcionDAO opcionDao = new OpcionDAO();
-		
+		OpcionDAO opcionDao = new OpcionDAO();		
 		return opcionDao.getOpcionRol();
 	}
 	
@@ -33,5 +33,12 @@ public class Menu {
 
 	public String getFormularioActual(){
 		return (String) Sessions.getCurrent().getAttribute("FormularioActual");
+	}
+	/**
+	 * Retorna el nombre del usuario logoneado.
+	 * @return
+	 */
+	public String getNombreUsuario() {
+		return SecurityUtil.getUser().getUsername();
 	}
 }

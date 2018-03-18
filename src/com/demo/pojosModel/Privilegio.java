@@ -18,7 +18,7 @@ import java.util.List;
 @NamedQuery(name="Privilegio.usuarioPrivilegio", query="SELECT r.id "
 		+ "FROM Privilegio r, Usuario u, UsuarioPrivilegio ru "
 		+ "WHERE ru.privilegio.id=r.id AND ru.usuario.id=u.id "
-		+ "AND u.id=:patron ")
+		+ "AND u.usuario=:patron ")
 })
 @AdditionalCriteria(" this.estado='A'")
 public class Privilegio implements Serializable {

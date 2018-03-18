@@ -2,6 +2,9 @@ package com.demo.pojosModel;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.eclipse.persistence.annotations.AdditionalCriteria;
+
 import java.util.List;
 
 
@@ -10,7 +13,13 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@NamedQueries({
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u"),
+@NamedQuery(name="Usuario.buscarPorNombre", query="SELECT u FROM Usuario u "
+		+ "WHERE u.nombre LIKE :patron"),
+@NamedQuery(name="Usuario.buscaUsuario",query="SELECT u FROM Usuario u WHERE LOWER(u.usuario) = LOWER(:nombreUsuario)")
+})
+@AdditionalCriteria(" this.estado='A' ")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.apache.catalina.security.SecurityUtil;
+import com.demo.security.SecurityUtil;
+
 
 public class OpcionDAO extends ClaseDAO {
 	
@@ -25,11 +26,11 @@ public class OpcionDAO extends ClaseDAO {
 	@SuppressWarnings("unchecked")
 	public List<Opcion> getOpcionRol(){
         List<Opcion> resultado;
-        int patron=2;
+       
         //Consultar el rol del usuario
         Query consulta2 = getEntityManager().createNamedQuery("Privilegio.usuarioPrivilegio");
-		consulta2.setParameter("patron", patron);
-		System.out.println(consulta2.getResultList());
+		consulta2.setParameter("patron", SecurityUtil.getUser().getUsername());
+		
 		int id_rol= (int) consulta2.getSingleResult();
 	    
 	    System.out.println("rol: " +id_rol);  
